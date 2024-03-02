@@ -1,11 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
+import { useCounterStore } from './store';
 
 export default function App() {
+  const counter = useCounterStore((state) => state.count);
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>{counter}</Text>
       <StatusBar style="auto" />
+      <Button
+        title="Increment"
+        onPress={() => useCounterStore.getState().increment()}
+      />
+      <Button
+        title="Decrement"
+        onPress={() => useCounterStore.getState().decrement()}
+      />
     </View>
   );
 }
